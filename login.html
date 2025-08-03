@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veri Merkezi Kablo Mesafe Hesaplayıcı - Giriş</title>
+  <link rel="stylesheet" href="styles/beyazalan.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    .login-container {
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 30px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .login-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .form-group label {
+      font-weight: 600;
+      color: var(--dark-color);
+    }
+    
+    .form-group input {
+      padding: 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    
+    .login-button {
+      background-color: var(--secondary-color);
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 4px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin-top: 10px;
+    }
+    
+    .login-button:hover {
+      background-color: #2980b9;
+    }
+    
+    .error-message {
+      color: var(--accent-color);
+      font-size: 14px;
+      text-align: center;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="login-container">
+      <div class="login-header">
+        <h1><i class="fas fa-network-wired"></i> Veri Merkezi</h1>
+        <p>Lütfen giriş yapın</p>
+      </div>
+      
+      <div class="login-form">
+        <div class="error-message" id="error-message">Kullanıcı adı veya şifre hatalı!</div>
+        
+        <div class="form-group">
+          <label for="username">Kullanıcı Adı</label>
+          <input type="text" id="username" placeholder="Kullanıcı adınızı girin" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="password">Şifre</label>
+          <input type="password" id="password" placeholder="Şifrenizi girin" required>
+        </div>
+        
+        <button type="button" id="login-button" class="login-button">Giriş Yap</button>
+      </div>
+    </div>
+  </div>
+  
+  <script src="js/components/UserManager.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Kullanıcı yöneticisini başlat
+      const userManager = new UserManager();
+      
+      // Giriş butonuna tıklama olayı ekle
+      const loginButton = document.getElementById('login-button');
+      const usernameInput = document.getElementById('username');
+      const passwordInput = document.getElementById('password');
+      const errorMessage = document.getElementById('error-message');
+      
+      loginButton.addEventListener('click', () => {
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value.trim();
+        
+        if (username && password) {
+          const loginResult = userManager.login(username, password);
+          
+          if (loginResult.success) {
+            // Başarılı giriş
+            if (loginResult.isAdmin) {
+              // Admin sayfasına yönlendir
+              window.location.href = 'admin.html';
+            } else {
+              // Normal sayfaya yönlendir
+              window.location.href = 'Deneme/main.html';
+            }
+          } else {
+            // Hatalı giriş
+            errorMessage.style.display = 'block';
+            passwordInput.value = '';
+          }
+        } else {
+          // Boş alanlar
+          errorMessage.style.display = 'block';
+          errorMessage.textContent = 'Lütfen tüm alanları doldurun!';
+        }
+      });
+      
+      // Enter tuşuna basıldığında giriş yap
+      passwordInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          loginButton.click();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

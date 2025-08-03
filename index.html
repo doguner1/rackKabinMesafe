@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veri Merkezi Kablo Mesafe Hesaplayıcı</title>
+  <script>
+    // Kullanıcı oturumunu kontrol et ve yönlendir
+    document.addEventListener('DOMContentLoaded', () => {
+      const currentUserKey = 'beyazalan-current-user';
+      const userJson = localStorage.getItem(currentUserKey);
+      const user = userJson ? JSON.parse(userJson) : null;
+      
+      if (user) {
+        // Kullanıcı giriş yapmış
+        if (user.isAdmin) {
+          // Admin kullanıcısı
+          window.location.href = 'admin.html';
+        } else {
+          // Normal kullanıcı
+          window.location.href = 'Deneme/main.html';
+        }
+      } else {
+        // Kullanıcı giriş yapmamış
+        window.location.href = 'login.html';
+      }
+    });
+  </script>
+</head>
+<body>
+  <p>Yönlendiriliyor...</p>
+</body>
+</html>

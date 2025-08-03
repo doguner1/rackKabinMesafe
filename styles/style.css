@@ -1,0 +1,40 @@
+body {
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+    padding: 40px;
+  }
+  
+  .beyaz-alan-wrapper {
+    position: relative;
+    width: max-content;
+    margin: auto;
+  }
+  
+  .beyaz-alan {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(2, auto);
+    column-gap: 60px; /* 3 metre boşluk */
+    row-gap: 30px;    /* 1.5 metre boşluk */
+    background: white;
+    padding: 20px;
+    border: 2px solid #ccc;
+  }
+  
+  .hucre {
+    border: 2px solid #888;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(10, 60px);
+    grid-template-rows: repeat(2, 200px);
+    gap: 5px;
+    background-color: #f0f0f0;
+  }
+  
+  .rack {
+    width: 60px;
+    height: 200px;
+    background-color: #12127a;
+    border: 1px solid #333;
+  }
+  

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veri Merkezi Kablo Mesafe Hesaplayıcı</title>
+  <link rel="stylesheet" href="../styles/beyazalan.css">
+  <link rel="stylesheet" href="../styles/notebook.css">
+  <link rel="stylesheet" href="../css/notebook.css">
+  <link rel="stylesheet" href="../styles/patch-panel.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1><i class="fas fa-network-wired"></i> Veri Merkezi Kablo Mesafe Hesaplayıcı</h1>
+      <p class="description">Veri merkezinde iki rack kabini arasındaki kablo mesafesini hesaplayın</p>
+    </header>
+
+    <div class="control-panel">
+      <div class="settings">
+        <div class="legend-items-container" style="
+           padding-bottom: 50px;
+          ">
+          <div class="setting-group">
+            <div class="legend-item"><span class="color-box selected"></span> Seçili Rack</div>
+          </div>
+          <div class="setting-group">
+            <div class="legend-item"><span class="color-box normal"></span> Boş Rack</div>
+          </div>
+          <div class="setting-group">
+            <div class="legend-item"><span class="color-box path"></span> Kablo Yolu</div>
+          </div>
+        </div>
+        <div class="buttons-container">
+          <div class="setting-group">
+            <button id="reset-button" class="btn"><i class="fas fa-undo"></i> Seçimi Sıfırla</button>
+          </div>
+          <div class="setting-group">
+            <button id="print-button" class="btn"><i class="fas fa-print"></i> Rapor Oluştur</button>
+          </div>
+          <div class="setting-group">
+            <button id="logout-button" class="btn"><i class="fas fa-sign-out-alt"></i> Çıkış Yap</button>
+          </div>
+        </div>
+      </div>
+      <div class="info-panel">
+        <div id="mesafe-gosterge" class="distance-display" style="display: flex;height: 120px;">
+          <div class="distance-icon"><i class="fas fa-ruler"></i></div>
+          <div class="distance-info">
+            <span class="label">Toplam Kablo Mesafesi:</span>
+            <span id="mesafe-deger" class="value">0</span> m
+          </div>
+          <!-- Geri butonu eklendi -->
+          <button id="back-button" class="btn back-btn" title="Son eklenen endpoint'i kaldır" style="margin-left: auto;">
+            <i class="fas fa-undo"></i>
+          </button>
+        </div>
+        <div class="path-details">
+          <div id="path-vertical" class="path-segment">
+            <i class="fas fa-arrows-alt-v"></i> Dikey: <span id="vertical-distance">0</span> cm
+          </div>
+          <div id="path-horizontal" class="path-segment">
+            <i class="fas fa-arrows-alt-h"></i> Yatay: <span id="horizontal-distance">0</span> cm
+          </div>
+        </div>
+      </div>
+      <div class="actions">
+        <!-- Butonlar buradan kaldırıldı -->
+      </div>
+      
+      <!-- To-Do List Bileşeni -->
+      <div class="todo-container">
+        <div class="todo-header">
+          <h3><i class="fas fa-tasks"></i> Görevler <span id="todo-count"></span></h3>
+        </div>
+        <div class="todo-content">
+          <ul id="todo-list" class="todo-items">
+            <!-- Görevler JavaScript ile buraya eklenecek -->
+          </ul>
+          <div class="todo-empty-message">Henüz görev eklenmedi.</div>
+        </div>
+        <div class="todo-form" style="
+    padding-top: 10px;
+    
+">
+          <input type="text" id="todo-input" placeholder="Yeni görev ekle..." maxlength="50">
+          <button id="add-todo-btn" class="btn todo-add-btn"><i class="fas fa-plus"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="datacenter-view">
+      <div class="datacenter-layout">
+        <div id="beyaz-alan-container"></div>
+        
+        <!-- Not Defteri Bileşeni -->
+        <div class="notebook-container" id="notebook-container">
+          <div class="notebook-header">
+            <h2>Not Defteri</h2>
+          </div>
+          <div class="notebook-selected-info">
+            <div id="notebook-rack-info">Henüz rack seçilmedi</div>
+            <div id="notebook-distance-info">Toplam Mesafe: 0.00 m</div>
+          </div>
+          <div class="notebook-content" id="notebook-content"></div>
+          <div class="notebook-form">
+            <input type="text" id="note-input" placeholder="Not ekle...">
+            <button id="note-save-button">Kaydet</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="report-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2>Kablo Mesafe Raporu</h2>
+        <div id="report-content"></div>
+        <button id="download-report" class="btn"><i class="fas fa-download"></i> PDF İndir</button>
+      </div>
+    </div>
+    
+    <!-- Rack Bağlantı Noktası Seçim Modalı -->
+    <div id="connection-point-modal" class="modal">
+      <div class="modal-content connection-modal">
+        <span class="close-button">&times;</span>
+        <h2>Rack Bağlantı Noktası Seçimi</h2>
+        <div class="rack-connection-points">
+          <div class="rack-visual">
+            <div class="connection-point top-section" data-height="1" title="Üst Bölüm - Tavana 1m mesafe">Zone Box</div>
+            <div class="connection-point" data-height="2" title="Orta Bölüm - Tavana 1.5m mesafe">Üs Bölüm</div>
+            <div class="connection-point" data-height="3" title="Alt Bölüm - Tavana 2.5m mesafe">Orta Bölüm</div>
+            <div class="connection-point" data-height="4" title="En Alt Bölüm - Tavana 3.5m mesafe">Alt Bölüm</div>
+          </div>
+          <div class="connection-info">
+            <p>Lütfen kablo bağlantı noktasını seçin:</p>
+            <p class="selected-point-info">Seçilen bölüm: <span id="selected-point">Seçilmedi</span></p>
+            <p class="selected-point-info">Tavana mesafe: <span id="ceiling-distance">0</span> m</p>
+            <button id="confirm-connection" class="btn"><i class="fas fa-check"></i> Onayla</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Rack Parçaları Ayar Modalı -->
+    <div id="rack-parts-modal" class="modal">
+      <div class="modal-content rack-parts-modal">
+        <span class="close-button">&times;</span>
+        <h2>Rack Parçaları Ayarları</h2>
+        <div class="rack-parts-container">
+          <div class="rack-parts-visual">
+            <!-- 45 eş parça burada oluşturulacak -->
+          </div>
+          <div class="rack-parts-info">
+            <div class="rack-parts-tabs">
+              <button class="tab-btn active" data-tab="manual-tab">Manuel Doldurma</button>
+              <button class="tab-btn" data-tab="device-tab">Cihaz Ekle</button>
+            </div>
+            
+            <div class="tab-content" id="manual-tab">
+              <p>Rack parçalarını dolu veya boş olarak ayarlayın:</p>
+              <div class="parts-legend">
+                <div class="legend-item"><span class="part-box empty"></span> Boş</div>
+                <div class="legend-item"><span class="part-box filled"></span> Dolu</div>
+              </div>
+              <p class="help-text"><i class="fas fa-info-circle"></i> Tek tıklama: Doldur/Boşalt, Çift tıklama: Etiket ekle</p>
+              <p class="help-text"><i class="fas fa-info-circle"></i> Shift+Tıklama: Aralık seç, Ctrl+Tıklama: Çoklu seçim</p>
+            </div>
+            
+            <div class="tab-content" id="device-tab" style="display: none;">
+              <div class="device-form">
+                <h3>Yeni Cihaz Ekle</h3>
+                <div class="form-group">
+                  <label for="device-name">Cihaz Adı:</label>
+                  <input type="text" id="device-name" placeholder="Örn: Switch, Router, Server...">
+                </div>
+                <div class="form-group">
+                  <label for="device-size">Cihaz Boyutu (U):</label>
+                  <input type="number" id="device-size" min="1" max="45" placeholder="Örn: 2, 3, 4...">
+                </div>
+                <p class="help-text"><i class="fas fa-info-circle"></i> Cihaz eklemek için önce boyutu girin, sonra rack üzerinde yerleştirmek istediğiniz U'ları seçin</p>
+                <button id="add-device-btn" class="btn"><i class="fas fa-plus"></i> Cihaz Ekle</button>
+              </div>
+              
+              <div class="device-list-container">
+                <h3>Eklenen Cihazlar</h3>
+                <div id="device-list">
+                  <!-- Cihazlar burada listelenecek -->
+                </div>
+              </div>
+            </div>
+            
+            <button id="save-rack-parts" class="btn"><i class="fas fa-save"></i> Kaydet</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="distance-settings-modal" class="modal">
+      <div class="modal-content distance-settings-modal">
+        <span class="close-button">&times;</span>
+        <h2>Mesafe Ayarları</h2>
+        <div class="distance-settings-container">
+          <div class="endpoint-selection-section">
+            <h3>Endpoint Noktaları Seçimi</h3>
+            <div class="endpoint-selection">
+              <div class="endpoint-select-group">
+                <label for="endpoint-select-1">Birinci Endpoint:</label>
+                <select id="endpoint-select-1" class="endpoint-select">
+                  <option value="">Endpoint seçiniz</option>
+                  <!-- Endpoint'ler JavaScript ile doldurulacak -->
+                </select>
+              </div>
+              <div class="endpoint-select-group">
+                <label for="endpoint-select-2">İkinci Endpoint:</label>
+                <select id="endpoint-select-2" class="endpoint-select">
+                  <option value="">Endpoint seçiniz</option>
+                  <!-- Endpoint'ler JavaScript ile doldurulacak -->
+                </select>
+              </div>
+            </div>
+            <div class="setting-group">
+              <label for="endpoint-distance">Mesafe (cm):</label>
+              <input type="number" id="endpoint-distance" min="1" max="1000" value="2">
+            </div>
+            <button id="add-distance-setting" class="btn"><i class="fas fa-plus"></i> Ekle</button>
+          </div>
+          
+          <div class="saved-distances-section">
+            <h3>Kaydedilmiş Mesafeler</h3>
+            <div class="saved-distances-list">
+              <!-- Kaydedilmiş mesafeler JavaScript ile doldurulacak -->
+              <div class="empty-list-message">Henüz kaydedilmiş mesafe bulunmamaktadır.</div>
+            </div>
+          </div>
+          
+          <div class="modal-actions">
+            <button id="save-distance-settings" class="btn"><i class="fas fa-save"></i> Kaydet</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Patch Panel Modal -->
+    <div id="patch-panel-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2>Patch Panel</h2>
+        
+        <div class="patch-panel-container">
+          <div class="patch-panel-grid">
+            <!-- Port grid buraya dinamik olarak eklenecek -->
+          </div>
+        </div>
+        
+        <div class="modal-buttons">
+          <button id="save-patch-panel" class="btn primary-button">Kapat</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Komponentler -->
+  <script src="../js/components/hucre.js"></script>
+  <script src="../js/components/beyazalan.js"></script>
+  <script src="../js/rack-mesafe.js"></script>
+  
+  <!-- Yeni modüler bileşenler -->
+  <script src="../js/components/HeaderManager.js"></script>
+  <!-- Modal bileşenleri -->
+  <script src="../js/components/BaseModal.js"></script>
+  <script src="../js/components/ConnectionPointModal.js"></script>
+  <script src="../js/components/RackPartsModal.js"></script>
+  <script src="../js/components/PatchPanelModal.js"></script>
+  <script src="../js/components/RackNameEditModal.js"></script>
+  <script src="../js/components/DistanceSettingsModal.js"></script>
+  <script src="../js/components/ModalManager.js"></script>
+  <!-- Diğer script etiketlerinden önce UserManager.js'i ekleyin -->
+  <script src="../js/components/UserManager.js"></script>
+  <script src="../js/components/TodoManager.js"></script>
+  <!-- Not defteri yöneticisi -->
+  <script src="../js/NotebookManager.js"></script>
+  <script src="../js/components/ReportManager.js"></script>
+  <script src="../js/components/StorageManager.js"></script>
+  <script src="../js/components/AppInitializer.js"></script>
+  
+  <script>
+    // Sayfa yüklendiğinde uygulamayı başlat
+    document.addEventListener('DOMContentLoaded', () => {
+      AppInitializer.init();
+    });
+    // Çıkış yapma butonu
+    document.getElementById('logout-button').addEventListener('click', () => {
+      localStorage.removeItem('beyazalan-current-user');
+      window.location.href = '../login.html';
+    });
+  </script>
+</body>
+</html>

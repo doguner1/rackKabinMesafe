@@ -1,0 +1,76 @@
+/* Patch Panel Modal Stilleri */
+.patch-panel-container {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Üst hizalama */
+  max-height: 70vh; /* Ekranın %70'i kadar maksimum yükseklik */
+  overflow: auto; /* Scroll özelliği ekle */
+}
+
+.patch-panel-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Sabit 4 sütun */
+  gap: 10px;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.patch-panel-port {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1; /* Kare şeklinde kutular */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.patch-panel-port:hover {
+  background-color: #e8e8e8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.port-name {
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+.patch-panel-port.editing {
+  background-color: #e3f2fd;
+}
+
+.port-name-input {
+  width: 90%;
+  padding: 5px;
+  border: 1px solid #2196F3;
+  border-radius: 3px;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Responsive tasarım */
+@media (max-width: 768px) {
+  .patch-panel-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+  }
+  
+  .patch-panel-port {
+    padding: 10px;
+  }
+  
+  .port-name {
+    font-size: 12px;
+  }
+}

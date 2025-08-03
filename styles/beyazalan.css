@@ -1,0 +1,1517 @@
+/* Genel stil tanımlamaları */
+:root {
+  --primary-color: #2c3e50;
+  --secondary-color: #3498db;
+  --accent-color: #e74c3c;
+  --light-color: #ecf0f1;
+  --dark-color: #2c3e50;
+  --border-color: #bdc3c7;
+  --rack-color: #d0d0ff;
+  --rack-selected: #3498db;
+  --rack-hover: #b0b0ff;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+body {
+  background-color: #f5f5f5;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 0;
+  margin: 0;
+  color: var(--dark-color);
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+header h1 {
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+header .description {
+  color: #7f8c8d;
+  font-size: 1.1rem;
+}
+
+/* Kontrol Paneli */
+.control-panel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  margin-bottom: 30px;
+  gap: 20px;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 0 0 auto;
+}
+
+.info-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0 auto 0 0;
+  flex: 1;
+  align-items: center;
+}
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 0 0 auto;
+}
+
+.legend-items-container {
+  display: flex;
+  gap: 20px;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.setting-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.setting-group label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: var(--dark-color);
+}
+
+.setting-group input {
+  padding: 8px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  width: 120px;
+}
+
+.info-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.distance-display {
+  display: flex;
+  align-items: center;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 16px;
+  gap: 10px;
+}
+
+.distance-icon {
+  font-size: 1.5rem;
+}
+
+.distance-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.distance-info .label {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.distance-info .value {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.path-details {
+  display: flex;
+  gap: 15px;
+}
+
+.path-segment {
+  background-color: var(--light-color);
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  display: none;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #2980b9;
+}
+
+/* Veri Merkezi Görünümü */
+.datacenter-view {
+  position: relative;
+}
+
+.legend {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 15px;
+  background-color: white;
+  padding: 10px 15px;
+  border-radius: 4px;
+  box-shadow: var(--shadow);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.color-box {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+}
+
+.color-box.normal {
+  background-color: var(--rack-color);
+  border: 1px solid #a0a0e0;
+}
+
+.color-box.selected {
+  background-color: var(--rack-selected);
+  border: 1px solid #2980b9;
+}
+
+.color-box.path {
+  background-color: #e74c3c;
+}
+
+/* Endpoint yol haritası stili */
+.rack-endpoint.path {
+  background-color: #e74c3c;
+  border-color: #e74c3c;
+}
+
+.rack-endpoint.path .endpoint-number {
+  color: white;
+}
+
+/* Beyaz Alan stilleri */
+.beyaz-alan-wrapper {
+  position: relative;
+  width: max-content;
+  margin: auto;
+  padding: 0px;
+  background-color: rgb(141, 60, 60);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.koordinatlar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.sutun-etiketleri {
+  display: flex;
+  justify-content: space-around;
+  position: absolute;
+  top: 50px;
+  left: 100px;
+  right: 100px;
+}
+
+.satir-etiketleri {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: absolute;
+  top: 100px;
+  left: 50px;
+  bottom: 100px;
+}
+
+.koordinat-etiket {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.beyaz-alan {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  grid-template-rows: repeat(1, auto);
+  column-gap: 60px;
+  row-gap: 30px;
+  background: white;
+  padding: 2px;
+  border: 2px solid var(--border-color);
+  position: relative;
+  border-radius: 8px;
+}
+
+/* Hücre 1 ile Hücre 2 arasındaki görsel mesafeyi ayarla */
+.beyaz-alan > .hucre:nth-child(1) {
+  margin-right: -45px; /* -30px'ten -45px'e değiştirildi - Hücre 1'i Hücre 2'ye daha fazla yaklaştır */
+}
+
+/* Hücre 2 ile Hücre 3 arasındaki görsel mesafeyi korumak için */
+.beyaz-alan > .hucre:nth-child(2) {
+  margin-left: 45px; /* 30px'ten 45px'e değiştirildi - Hücre 2'yi Hücre 1'den uzaklaştır */
+  margin-right: 0; /* Hücre 2 ile Hücre 3 arasındaki mesafeyi korumak için */
+}
+
+/* Hücre stilleri */
+.hucre {
+  border: 2px solid var(--border-color);
+  padding: 15px;
+  background-color: var(--light-color);
+  position: relative;
+  border-radius: 6px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Tek sütunlu hücre için özel stil */
+.hucre-tek-sutun {
+  width: 105px; /* Tek sütun için daha dar genişlik */
+  height: 690px;
+}
+
+.hucre-baslik {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--primary-color);
+  color: white;
+  padding: 2px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 10;
+}
+
+.rack-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 100px); /* 2 sütun, her biri 100px genişliğinde */
+  grid-template-rows: repeat(10, 60px); /* 10 satır, her biri 60px yüksekliğinde */
+  gap: 5px;
+}
+
+/* Tek sütunlu rack grid için özel stil */
+.rack-grid-tek-sutun {
+  grid-template-columns: repeat(1, 100px); /* Tek sütun, 100px genişliğinde */
+  grid-template-rows: repeat(17, 60px); /* 17 satır, her biri 60px yüksekliğinde */
+}
+
+/* Rack stilleri */
+.rack {
+  width: 100px; /* Genişlik 100cm olarak güncellendi */
+  height: 60px; /* Yükseklik 60cm olarak güncellendi */
+  background-color: var(--rack-color);
+  border: 1px solid #a0a0e0;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.rack:hover {
+  background-color: var(--rack-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.rack.selected, .rack.connection-selecting {
+  background-color: var(--rack-selected);
+  border: 2px solid #2980b9;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Bağlantı Noktası Seçim Modalı */
+.connection-modal {
+  max-width: 600px;
+}
+
+.rack-connection-points {
+  display: flex;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.rack-visual { /* Rack Görseli Bölüm seçme ekranı */
+  position: relative;
+  width: 120px;
+  height: 400px; /* 4 kutu için yüksekliği artırdık */
+  background-color: var(--rack-color);
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  overflow: visible; /* Üst kutunun dışarı taşmasına izin ver */
+}
+
+.connection-point {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px;
+  text-align: center;
+}
+
+/* En üst bölüm için özel stil */
+.connection-point.top-section {
+  position: absolute;
+  width: 60px; /* Genişliği yarıya düşür */
+  height: 40px; /* Daha küçük yükseklik */
+  top: -20px; /* Yukarı doğru konumlandır */
+  left: 50%;
+  transform: translateX(-50%); /* Yatayda ortalamak için */
+  border: 2px solid #666; /* Daha belirgin kenarlık */
+  border-radius: 4px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* Daha belirgin gölge */
+  font-size: 12px; /* Yazı boyutunu küçült */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none; /* Flex özelliğini kaldır */
+  background-color: white; /* Beyaz arka plan */
+  z-index: 10; /* Diğer öğelerin üzerinde görünmesi için */
+}
+
+/* En üst bölüm için bağlantı çizgisi */
+.connection-point.top-section::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 10px;
+  background-color: #666;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.connection-point:last-child {
+  border-bottom: none;
+}
+
+.connection-point:hover {
+  background-color: rgba(52, 152, 219, 0.1);
+}
+
+.connection-point.selected {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.connection-info {
+  flex: 1;
+}
+
+.selected-point-info {
+  margin: 10px 0;
+  font-weight: 600;
+}
+
+#selected-point, #ceiling-distance {
+  color: var(--secondary-color);
+}
+
+/* Rack grid yapısı güncelleme */
+.rack-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 60px);
+  grid-template-rows: repeat(2, 100px); /* Rack yüksekliği 100cm olarak güncellendi */
+  gap: 5px;
+}
+
+/* Hücre stilleri güncelleme */
+.hucre {
+  border: 2px solid var(--border-color);
+  padding: 15px;
+  background-color: var(--light-color);
+  position: relative;
+  border-radius: 6px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.hucre-baslik {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--primary-color);
+  color: white;
+  padding: 2px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 10;
+}
+
+.rack-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 60px);
+  grid-template-rows: repeat(2, 100px);
+  gap: 5px;
+}
+
+/* Kablo şeması stilleri - Bu bölümü kaldırın */
+/* 
+.kablo-semasi {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.kablo-yolu {
+  stroke: #3498db;
+  stroke-width: 2px;
+  fill: none;
+  stroke-dasharray: 8, 4;
+  opacity: 0.6;
+  transition: all 0.3s;
+}
+
+.kablo-yolu.active {
+  stroke: #2980b9;
+  stroke-width: 3px;
+  stroke-dasharray: none;
+  opacity: 1;
+  filter: drop-shadow(0 0 3px rgba(41, 128, 185, 0.5));
+}
+*/
+
+/* Modal Stilleri */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: white;
+  margin: 5% auto;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  width: 60%;
+  max-width: 800px;
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #7f8c8d;
+}
+
+.report-section {
+  margin-bottom: 20px;
+}
+
+.report-section h3 {
+  color: var(--primary-color);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+.report-section table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.report-section table td {
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.report-section table td:first-child {
+  font-weight: 600;
+  width: 40%;
+}
+
+/* Responsive Tasarım */
+@media (max-width: 1200px) {
+  .control-panel {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .settings, .info-panel, .actions {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .beyaz-alan-wrapper {
+    padding: 50px;
+    overflow-x: auto;
+  }
+  
+  .modal-content {
+    width: 90%;
+    margin: 20% auto;
+  }
+}
+
+/* Rack ayar butonu */
+.rack-settings-btn {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background-color: rgba(52, 152, 219, 0.8);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: all 0.3s;
+  z-index: 5;
+}
+
+.rack:hover .rack-settings-btn {
+  opacity: 1;
+}
+
+.rack-settings-btn:hover {
+  background-color: rgba(41, 128, 185, 1);
+  transform: scale(1.1);
+}
+
+/* Rack parçaları modal */
+.rack-parts-modal {
+  max-width: 900px;
+  max-height: 90vh; /* Ekran yüksekliğinin %90'ı kadar maksimum yükseklik */
+  overflow-y: auto; /* Dikey kaydırma çubuğu ekle */
+}
+
+.rack-parts-container {
+  display: flex;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.rack-parts-visual { /* Rock parça ayar sayfası*/
+  width: 120px;
+  height: 600px; /* Yüksekliği artır */
+  background-color: var(--rack-color);
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  display: grid;
+  grid-template-rows: repeat(45, 13.33px); /* Sabit yükseklik */
+  overflow-y: auto; /* Dikey kaydırma çubuğu ekle */
+  position: relative;
+}
+
+.rack-parts-visual::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    transparent,
+    transparent 13.33px,
+    rgba(0, 0, 0, 0.05) 13.33px,
+    rgba(0, 0, 0, 0.05) 13.33px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.rack-parts-visual .rack-part {
+  border-bottom: none;
+  box-shadow: inset 0 -1px 0 var(--border-color);
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: #7f8c8d;
+  position: relative;
+  z-index: 2;
+  box-sizing: border-box;
+  height: 13.33px;
+}
+
+.rack-parts-visual .rack-part:last-child {
+  border-bottom: none;
+}
+
+.rack-parts-visual .rack-part:hover {
+  background-color: rgba(52, 152, 219, 0.1);
+}
+
+.rack-parts-visual .rack-part.empty {
+  background-color: transparent;
+}
+
+.rack-parts-visual .rack-part.filled {
+  background-color: rgba(52, 152, 219, 0.7);
+  color: white;
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.rack-parts-visual .rack-part.selected {
+  background-color: rgba(231, 76, 60, 0.7);
+  color: white;
+  box-shadow: inset 0 0 0 2px rgba(231, 76, 60, 1);
+}
+
+/* Grup başlangıcı, ortası ve sonu için stiller */
+.rack-parts-visual .rack-part.group-start {
+  border-bottom: none;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+
+.rack-parts-visual .rack-part.group-middle {
+  border-top: none;
+  border-bottom: none;
+  z-index: 1;
+}
+
+.rack-parts-visual .rack-part.group-end {
+  border-top: none;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+
+/* Grup içindeki parçaların iç çizgilerini gizle */
+.rack-parts-visual .rack-part.group-start + .rack-parts-visual .rack-part.group-middle,
+.rack-parts-visual .rack-part.group-middle + .rack-parts-visual .rack-part.group-middle,
+.rack-parts-visual .rack-part.group-middle + .rack-parts-visual .rack-part.group-end {
+  margin-top: -1px;
+}
+
+/* Grup içindeki parçaların arka plan rengini biraz daha belirgin yap */
+.rack-parts-visual .rack-part.group-start,
+.rack-parts-visual .rack-part.group-middle,
+.rack-parts-visual .rack-part.group-end {
+  background-color: rgba(52, 152, 219, 0.8);
+  position: relative;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.rack-parts-visual .rack-part-label-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  text-align: center;
+  font-size: 10px;
+  color: inherit;
+  z-index: 2;
+  display: none;
+}
+
+.rack-parts-visual .rack-part.editing .rack-part-label-input {
+  display: block;
+}
+
+.rack-parts-visual .rack-part.filled .rack-part-label-input {
+  color: white;
+}
+
+.rack-parts-info {
+  flex: 1;
+}
+
+.rack-parts-tabs {
+  display: flex;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.tab-btn {
+  padding: 10px 20px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  font-weight: 600;
+  color: #7f8c8d;
+  transition: all 0.3s;
+}
+
+.tab-btn:hover {
+  color: var(--secondary-color);
+}
+
+.tab-btn.active {
+  color: var(--secondary-color);
+  border-bottom-color: var(--secondary-color);
+}
+
+.tab-content {
+  padding: 15px 0;
+}
+
+.help-text {
+  font-size: 12px;
+  color: #7f8c8d;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.help-text i {
+  color: var(--secondary-color);
+}
+
+.parts-legend {
+  display: flex;
+  gap: 20px;
+  margin: 15px 0;
+}
+
+.part-box {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border-color);
+  border-radius: 3px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.part-box.empty {
+  background-color: transparent;
+}
+
+.part-box.filled {
+  background-color: rgba(52, 152, 219, 0.7);
+}
+
+/* Cihaz ekleme formu stilleri */
+.device-form {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  border: 1px solid var(--border-color);
+}
+
+.device-form h3 {
+  margin-top: 0;
+  color: var(--primary-color);
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.form-group input:focus {
+  border-color: var(--secondary-color);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+#add-device-btn {
+  background-color: var(--secondary-color);
+  margin-top: 10px;
+}
+
+/* Cihaz listesi stilleri */
+.device-list-container {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.device-list-container h3 {
+  margin-top: 0;
+  color: var(--primary-color);
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+#device-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.device-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: white;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  transition: all 0.2s;
+}
+
+.device-item:hover {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.device-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.device-info {
+  flex: 1;
+}
+
+.device-name {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.device-size {
+  font-size: 12px;
+  color: #7f8c8d;
+}
+
+.device-actions {
+  display: flex;
+  gap: 5px;
+}
+
+.edit-device-btn, .delete-device-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.edit-device-btn {
+  color: var(--secondary-color);
+}
+
+.delete-device-btn {
+  color: var(--accent-color);
+}
+
+.edit-device-btn:hover, .delete-device-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.empty-device-list {
+  text-align: center;
+  padding: 20px;
+  color: #999;
+  font-style: italic;
+}
+
+/* To-Do List Stilleri */
+.control-panel {
+  justify-content: space-between; /* Elemanları yayarak dağıtır */
+}
+
+.todo-container {
+  width: 300px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-left: auto; /* Sağa hizalama için */
+  display: flex;
+  flex-direction: column;
+  max-height: 220px; /* Maksimum yükseklik */
+  height: 350px; /* Sabit yükseklik ekledim */
+}
+
+.todo-header {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 12px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.todo-header h3 {
+  margin: 0;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.todo-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 0;
+  /*max-height: 80px;
+  height: 60px; /* Sabit yükseklik - sadece bir görev gösterecek şekilde */
+}
+
+.todo-items {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.todo-item {
+  padding: 10px 15px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  animation: fadeIn 0.3s ease;
+  transition: background-color 0.2s;
+  height: 40px; /* Sabit görev yüksekliği */
+}
+
+.todo-item:hover {
+  background-color: #f9f9f9;
+}
+
+.todo-item:last-child {
+  border-bottom: none;
+}
+
+.todo-checkbox {
+  margin-right: 10px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.todo-text {
+  flex: 1;
+  font-size: 14px;
+  word-break: break-word;
+}
+
+.todo-text.completed {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.todo-delete {
+  color: var(--accent-color);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.todo-delete:hover {
+  opacity: 1;
+}
+
+.todo-form {
+  display: flex;
+  border-top: 1px solid #eee;
+  background-color: #2c3e50;
+  padding: 3px;
+  padding-bottom: 5px;
+}
+
+#todo-input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.todo-add-btn {
+  margin-left: 8px;
+  padding: 8px 12px;
+  background-color: var(--secondary-color);
+}
+
+.todo-empty-message {
+  text-align: center;
+  color: #999;
+  padding: 20px;
+  font-style: italic;
+  font-size: 14px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-10px); }
+}
+
+.todo-item.removing {
+  animation: fadeOut 0.3s ease forwards;
+}
+
+/* Rack üzerindeki endpoint halkası */
+.rack-endpoint {
+  position: absolute;
+  width: 16px; /* 12px'den 16px'e büyüttüm */
+  height: 16px; /* 12px'den 16px'e büyüttüm */
+  background-color: white; /* Transparent yerine beyaz yaptım */
+  border: 2px solid #3498db;
+  border-radius: 50%;
+  top: -8px; /* -6px'den -8px'e güncelledim (halka büyüdüğü için) */
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.rack-endpoint:hover {
+  transform: translateX(-50%) scale(1.2);
+}
+
+.rack-endpoint.active {
+  background-color: #3498db;
+}
+
+/* Endpoint numarası stili */
+.endpoint-number {
+  font-size: 8px;
+  font-weight: bold;
+  color: #3498db;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.rack-endpoint.active .endpoint-number {
+  color: white;
+}
+
+/* Mesafe Ayarları Modal Stilleri */
+.distance-settings-modal {
+  max-width: 800px;
+  width: 80%;
+}
+
+.distance-settings-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.endpoint-selection-section, .saved-distances-section {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+}
+
+.endpoint-selection {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.endpoint-select-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.endpoint-select {
+  padding: 8px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.saved-distances-list {
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: white;
+}
+
+.empty-list-message {
+  padding: 15px;
+  text-align: center;
+  color: #999;
+  font-style: italic;
+}
+
+.distance-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.2s;
+}
+
+.distance-item:last-child {
+  border-bottom: none;
+}
+
+.distance-item:hover {
+  background-color: #f5f5f5;
+}
+
+.distance-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.distance-endpoints {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.distance-value {
+  color: var(--secondary-color);
+  font-size: 13px;
+}
+
+.distance-actions {
+  display: flex;
+  gap: 5px;
+}
+
+.edit-distance-btn, .delete-distance-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.edit-distance-btn {
+  color: var(--secondary-color);
+}
+
+.delete-distance-btn {
+  color: var(--accent-color);
+}
+
+.edit-distance-btn:hover, .delete-distance-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+/* Hücre ayar butonu stili */
+.hucre-settings-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  z-index: 20;
+}
+
+.hucre-settings-btn:hover {
+  background-color: var(--secondary-color);
+  transform: scale(1.1);
+}
+
+/* Kapı simgesi stili */
+.door-icon {
+  position: absolute;
+  width: 40px;
+  height: 30px;
+  background-color: #8B4513; /* Kahverengi kapı rengi */
+  border: 2px solid #5D3A1A;
+  border-radius: 4px 4px 0 0;
+  bottom: -40px; /* Rack'in altında konumlandırma */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 15;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.door-icon:before {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background-color: #FFD700; /* Altın rengi kapı kolu */
+  border-radius: 50%;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+}
+
+.door-icon:hover {
+  transform: translateX(-50%) scale(1.05);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.door-icon:after {
+  content: "GİRİŞ";
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  font-weight: bold;
+  color: #333;
+  white-space: nowrap;
+}
+
+/* Rack isim düzenleme modalı stilleri */
+#rack-name-edit-modal .modal-content {
+  max-width: 400px;
+}
+
+.rack-name-form {
+  margin-top: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+#original-rack-id {
+  font-family: monospace;
+  font-size: 16px;
+  color: #666;
+}
+
+#new-rack-name {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn-secondary {
+  background-color: #95a5a6;
+}
+
+.btn-secondary:hover {
+  background-color: #7f8c8d;
+}
+
+/* Rack ID'ye çift tıklama ipucu */
+.rack-info {
+  cursor: pointer;
+  position: relative; /* Eklendi: Pozisyon referansı için */
+}
+
+.rack-info:hover .rack-id {
+  text-decoration: underline;
+  color: var(--secondary-color);
+}
+
+.rack-info:hover::after {
+  content: "Çift tıkla ve düzenle";
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  white-space: nowrap;
+  z-index: 100;
+  pointer-events: none; /* Eklendi: Tıklama olaylarını engellememesi için */
+}
+
+/* Todo kullanıcı filtresi */
+.todo-filter {
+  margin-left: auto;
+}
+
+.todo-user-filter {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 2px 5px;
+  font-size: 12px;
+  color: #333;
+}
+
+/* Todo kullanıcı rozeti */
+.todo-user-badge {
+  background-color: #e0e0ff;
+  color: #5050a0;
+  font-size: 10px;
+  padding: 2px 5px;
+  border-radius: 10px;
+  margin-right: 5px;
+  display: inline-block;
+}
+
+.back-btn {
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.back-btn:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+}
+
+.reset-btn {
+  background-color: #ff5252;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.reset-btn:hover {
+  background-color: #ff0000;
+}
